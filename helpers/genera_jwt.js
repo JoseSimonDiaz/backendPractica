@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken"; //aqui tenemos todos los metodos necesarios para
          const payload = {uid}
             
          //generemos el token
-        jwt.sign(payload, process.env.PRIVATESECRETEKEY , {expiresIn:"4h"}, (err, token)=>{
+        jwt.sign(payload, process.env.PRIVATESECRETEKEY , {expiresIn:"10h"}, (err, token)=>{
           if(err){
             console.log(err);
             reject("No se pudo generar el token")
