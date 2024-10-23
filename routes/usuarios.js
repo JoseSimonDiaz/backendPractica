@@ -1,4 +1,3 @@
-const router = Router()
 import {Router} from 'express'
 import { check } from 'express-validator'
 import { validarCampos } from '../middlewares/validar-campos.js'
@@ -6,6 +5,9 @@ import { validarJWT } from '../middlewares/validar-JWT.js'
 import { esAdminRole } from '../middlewares/validar-roles.js'
 import { emailExiste,rolValido, existeUsuarioPorId} from '../helpers/db-validators.js'
 import {getUser, postUser, putUser, deleteUser} from '../controllers/usuario.js'
+
+const router = Router()
+
 
 router.get('/',
      [
