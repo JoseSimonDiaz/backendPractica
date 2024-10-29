@@ -1,6 +1,7 @@
 
 import Role from "../models/rol.js" //aqui voy a tener acceso a la colecion de roles de la base de datos
 import Usuarios from "../models/usuarios.js"
+import Producto from "../models/productos.js"
 
 const rolValido =  async(rol) => {
 
@@ -32,4 +33,13 @@ const existeUsuarioPorId = async (id) =>{
 
 }
 
-export { rolValido, emailExiste, existeUsuarioPorId}
+const productoExiste = async (id) => {
+     const existeProducto = await Producto.findById(id)
+     if(!existeProducto){
+        throw new Error(`El id:${id} no existe en la base de datos` );  //Nos puede servir cuando queremos actualizar un producto, le mandaremos el id. pero si elimine ese producto de la base de datos
+        
+     }
+
+}
+
+export { rolValido, emailExiste, existeUsuarioPorId, productoExiste }

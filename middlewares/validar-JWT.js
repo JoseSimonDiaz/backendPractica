@@ -17,7 +17,7 @@ const validarJWT = async (req, res, next) => { // Next indica que si está todo 
   try {
     // Aquí hacemos el proceso para ver si el token es válido.
     // Primero tenemos que obtener el payload (los datos que vienen del token).
-    const { uid } = jwt.verify(token, process.env.PRIVATESECRETKEY); // El método verify pide el token recibido, y como segundo valor la clave secreta. Si sale bien, almacenamos el id del usuario mandado como payload.
+    const { uid } = jwt.verify(token, process.env.PRIVATESECRETEKEY); // El método verify pide el token recibido, y como segundo valor la clave secreta. Si sale bien, almacenamos el id del usuario mandado como payload.
 
     // Ya teniendo el id, podemos obtener los datos del usuario por su id
     const usuario = await Usuario.findById({ _id: uid }); // Buscamos que la propiedad _id tenga el valor uid.

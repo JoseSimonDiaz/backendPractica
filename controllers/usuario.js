@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 // import {validationResult} from 'express-validator'
 
 
-const getUser = async(req, res)=>{ //toda peticion que hagamos desde el navegador es una peticion GET
+const getUsers = async(req, res)=>{ //toda peticion que hagamos desde el navegador es una peticion GET
     //Al llamar a este metodo deberia devolverme todos los usuarios
 
     const {limite=5,desde=0 } = req.query
@@ -16,6 +16,18 @@ const getUser = async(req, res)=>{ //toda peticion que hagamos desde el navegado
         usuarios,
     })
 }
+
+//Para traer un usuario por su ID
+
+const getUser = async(req, res) => {
+    const {id} =req.params
+
+    const usuario = await Usuario.findById(id)
+    res.json({
+        usuario,
+    })
+}
+
 
 const postUser = async(req=request, res=response)=>{
     const datos = req.body //todo lo que mande en el cuerpo, todo eso lo voy a almacenar en una variable llamada datos
@@ -103,4 +115,4 @@ const deleteUser = async (req, res)=>{
     
 }
 
-export{getUser, postUser, putUser, deleteUser}
+export{getUsers, getUser ,postUser, putUser, deleteUser}

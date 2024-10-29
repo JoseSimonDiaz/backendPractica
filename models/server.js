@@ -1,8 +1,11 @@
 // const express = require('express')
 import express from 'express';
+// import cors from 'cors'
 import  router  from '../routes/usuarios.js';
 import  routerAuth  from '../routes/auth.js';
 import routerCat from '../routes/categorias.js'
+import routerProd from "../routes/productos.js";
+import routerSearch from '../routes/buscar.js';
 import {dbConnection} from '../database/config.js'
 class Server{
     constructor(){
@@ -11,6 +14,9 @@ class Server{
         this.usuarioPath = '/api/usuarios'
         this.authPath ="/api/auth";
         this.categoriaPath = "/api/categorias"
+        this.productoPath = "/api/productos"
+        this.buscarPath = "/api/buscar"
+       
         this.conectarDB();
         this.middlewares() //¿Porque no llamamos primero a routes y despues a los middlewares? Y es que el orden para que funcione, es que primero ejecutamos los middlewares, para decirle al servidor cuales son los middlewares que estaran actuivos y recien despues llamamos a las rutas
         this.routes()
@@ -23,6 +29,8 @@ class Server{
         this.app.use(this.usuarioPath, router)
         this.app.use(this.authPath, routerAuth)
         this.app.use(this.categoriaPath, routerCat)
+        this.app.use(this.productoPath, routerProd)
+        this.app.use(this.buscarPath, routerSearch)
         
         // this.app.get('/api', (req, res)=>{ //toda peticion que hagamos desde el navegador es una peticion GET
         //     res.send("Peticion GET")
